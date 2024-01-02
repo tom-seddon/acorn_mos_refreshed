@@ -33,3 +33,13 @@ artifacts:
   - path: $(CI_ARCHIVE)
     name: ci_archive
     
+deploy:
+  - release: $(RELEASE_NAME)
+    description: See https://github.com/tom-seddon/acorn_mos_disassembly/blob/master/docs/refresh.md
+      
+    provider: GitHub
+    auth_token:
+      secure: qT8fpG/5gPPir6BcMBaQAFgGfuiBd5+AP2vwiHM6bVHdvUOapT2sMgD16YvyHMO0
+    artifact: ci_archive
+    draft: false
+    prerelease: false
