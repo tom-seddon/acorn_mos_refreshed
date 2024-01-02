@@ -1,0 +1,32 @@
+version: '{build}'
+
+branches:
+  only:
+    - main
+
+image:
+  - Ubuntu2004
+
+install:
+  - ps: git submodule init --recursive
+  - ps: git submodule update --recursive
+  - pushd ~
+  - svn checkout -r 3120 https://svn.code.sf.net/p/tass64/code/trunk tass64-code
+  - cd ~/tass64-code && make -j$(nproc)
+  - popd
+
+build_script:
+  - cd submodules/acorn_mos_reassembly && make VERBOSE=1 "TASSCMD=$HOME/tass64-code/64tass"
+  - ps:
+      $ver=Get-Content "submodules/acorn_mos_reassembly/build/refresh_version.dat"
+      $env:CI_ARCHIVE="mos-6."+$ver+"-7."+$ver+"-8."+$ver+".zip"
+      mv submodules/acorn_mos_reassembly/build/6xx ("6."+$ver)
+      mv submodules/acorn_mos_reassembly/build/7xx ("7."+$ver)
+      mv submodules/acorn_mos_reassembly/build/8xx ("8."+$ver)
+      zip -9r $env:CI_ARCHIVE ("6."+$ver) ("7."+$ver) ("8."+$ver)
+      zip -9j $env:CI_ARCHIVE "docs/README.txt"
+
+artifacts:
+  - path: $(CI_ARCHIVE)
+    name: ci_archive
+    
