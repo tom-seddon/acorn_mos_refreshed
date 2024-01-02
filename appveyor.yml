@@ -8,8 +8,7 @@ image:
   - Ubuntu2004
 
 install:
-  - ps: git submodule init --recursive
-  - ps: git submodule update --recursive
+  - ps: git submodule update --init --recursive
   - pushd ~
   - svn checkout -r 3120 https://svn.code.sf.net/p/tass64/code/trunk tass64-code
   - cd ~/tass64-code && make -j$(nproc)
