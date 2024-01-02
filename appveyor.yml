@@ -15,14 +15,14 @@ install:
   - popd
 
 build_script:
-  - cd submodules/acorn_mos_reassembly && make VERBOSE=1 "TASSCMD=$HOME/tass64-code/64tass"
+  - cd submodules/acorn_mos_disassembly && make VERBOSE=1 "TASSCMD=$HOME/tass64-code/64tass"
   - ps:
-      $ver=Get-Content "submodules/acorn_mos_reassembly/build/refresh_version.dat"
+      $ver=Get-Content "submodules/acorn_mos_disassembly/build/refresh_version.dat"
       $env:RELEASE_NAME="mos-6."+$ver+"-7."+$ver+"-8."+$ver
       $env:CI_ARCHIVE=$env:RELEASE_NAME+".zip"
-      mv submodules/acorn_mos_reassembly/build/6xx ("6."+$ver)
-      mv submodules/acorn_mos_reassembly/build/7xx ("7."+$ver)
-      mv submodules/acorn_mos_reassembly/build/8xx ("8."+$ver)
+      mv submodules/acorn_mos_disassembly/build/6xx ("6."+$ver)
+      mv submodules/acorn_mos_disassembly/build/7xx ("7."+$ver)
+      mv submodules/acorn_mos_disassembly/build/8xx ("8."+$ver)
       zip -9r $env:CI_ARCHIVE ("6."+$ver) ("7."+$ver) ("8."+$ver)
       zip -9j $env:CI_ARCHIVE "docs/README.txt"
   - env
