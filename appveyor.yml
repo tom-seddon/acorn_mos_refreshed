@@ -15,7 +15,9 @@ install:
   - popd
 
 build_script:
-  - cd submodules/acorn_mos_disassembly && make VERBOSE=1 "TASSCMD=$HOME/tass64-code/64tass"
+  - pushd submodules/acorn_mos_disassembly
+  - make VERBOSE=1 "TASSCMD=$HOME/tass64-code/64tass"
+  - popd
   - ps: $ver=Get-Content "submodules/acorn_mos_disassembly/build/refresh_version.dat"
   - ps: |
       $env:RELEASE_NAME="mos-6."+$ver+"-7."+$ver+"-8."+$ver
