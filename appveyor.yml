@@ -20,12 +20,12 @@ build_script:
   - popd
   - ps: $ver=Get-Content "submodules/acorn_mos_disassembly/build/refresh_version.dat"
   - ps: |
-      $env:RELEASE_NAME="mos-6."+$ver+"-7."+$ver+"-8."+$ver
+      $env:RELEASE_NAME="mos-refreshed-"+$ver
       $env:CI_ARCHIVE=$env:RELEASE_NAME+".zip"
-      mv submodules/acorn_mos_disassembly/build/6xx ("6."+$ver)
-      mv submodules/acorn_mos_disassembly/build/7xx ("7."+$ver)
-      mv submodules/acorn_mos_disassembly/build/8xx ("8."+$ver)
-      zip -9r $env:CI_ARCHIVE ("6."+$ver) ("7."+$ver) ("8."+$ver)
+      mv submodules/acorn_mos_disassembly/build/320r ("320"+$ver)
+      mv submodules/acorn_mos_disassembly/build/350r ("350"+$ver)
+      mv submodules/acorn_mos_disassembly/build/510r ("510"+$ver)
+      zip -9r $env:CI_ARCHIVE ("320"+$ver) ("350"+$ver) ("510"+$ver)
       zip -9j $env:CI_ARCHIVE "docs/README.txt"
   - env
 
