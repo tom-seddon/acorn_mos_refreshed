@@ -25,8 +25,12 @@ build_script:
       mv submodules/acorn_mos_disassembly/build/320r ("320"+$ver)
       mv submodules/acorn_mos_disassembly/build/350r ("350"+$ver)
       mv submodules/acorn_mos_disassembly/build/510r ("510"+$ver)
+      mv submodules/acorn_mos_disassembly/build/mos320r.lst ("mos320"+$ver+".lst")
+      mv submodules/acorn_mos_disassembly/build/mos350r.lst ("mos350"+$ver+".lst")
+      mv submodules/acorn_mos_disassembly/build/mos510r.lst ("mos510"+$ver+".lst")
+      
       zip -9r $env:CI_ARCHIVE ("320"+$ver) ("350"+$ver) ("510"+$ver)
-      zip -9j $env:CI_ARCHIVE "docs/README.txt"
+      zip -9j $env:CI_ARCHIVE "docs/README.txt" ("mos320"+$ver+".lst") ("mos350"+$ver+".lst") ("mos510"+$ver+".lst")
   - env
 
 artifacts:
