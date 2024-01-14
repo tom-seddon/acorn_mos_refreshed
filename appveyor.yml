@@ -22,6 +22,8 @@ build_script:
   - ps: |
       $env:RELEASE_NAME="mos-refreshed-"+$ver
       $env:CI_ARCHIVE=$env:RELEASE_NAME+".zip"
+      mv submodules/acorn_mos_disassembly/build/other_350_roms.rel_dfs submodules/acorn_mos_disassembly/build/350r/
+      mv submodules/acorn_mos_disassembly/build/other_350_roms.rel_none submodules/acorn_mos_disassembly/build/350r/
       mv submodules/acorn_mos_disassembly/build/320r ("320"+$ver)
       mv submodules/acorn_mos_disassembly/build/350r ("350"+$ver)
       mv submodules/acorn_mos_disassembly/build/510r ("510"+$ver)
