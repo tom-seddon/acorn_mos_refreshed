@@ -16,7 +16,7 @@ install:
 
 build_script:
   - pushd submodules/acorn_mos_disassembly
-  - make VERBOSE=1 "TASSCMD=$HOME/tass64-code/64tass"
+  - make prebuilt_versions VERBOSE=1 "TASSCMD=$HOME/tass64-code/64tass"
   - popd
   - ps: $ver=Get-Content "submodules/acorn_mos_disassembly/build/refresh_version.dat"
   - ps: |
@@ -26,6 +26,12 @@ build_script:
       mv submodules/acorn_mos_disassembly/build/other_350_roms.rel_none submodules/acorn_mos_disassembly/build/350r/
       mv submodules/acorn_mos_disassembly/build/basic.4r32.relocation.dat submodules/acorn_mos_disassembly/build/350r/
       mv submodules/acorn_mos_disassembly/build/edit.1.50r.relocation.dat submodules/acorn_mos_disassembly/build/350r/
+      mv submodules/acorn_mos_disassembly/build/320r/320r.bin ("submodules/acorn_mos_disassembly/build/320r/320"+$ver+".bin")
+      mv submodules/acorn_mos_disassembly/build/320r/320r_ide.bin ("submodules/acorn_mos_disassembly/build/320r/320"+$ver+"_ide.bin")
+      mv submodules/acorn_mos_disassembly/build/350r/350r.bin ("submodules/acorn_mos_disassembly/build/350r/350"+$ver+".bin")
+      mv submodules/acorn_mos_disassembly/build/350r/350r_ide.bin ("submodules/acorn_mos_disassembly/build/350r/350"+$ver+"_ide.bin")
+      mv submodules/acorn_mos_disassembly/build/510r/510r.bin ("submodules/acorn_mos_disassembly/build/510r/510"+$ver+".bin")
+      
       mv submodules/acorn_mos_disassembly/build/320r ("320"+$ver)
       mv submodules/acorn_mos_disassembly/build/350r ("350"+$ver)
       mv submodules/acorn_mos_disassembly/build/510r ("510"+$ver)
